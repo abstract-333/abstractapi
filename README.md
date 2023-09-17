@@ -1,6 +1,6 @@
 # AbstractAPI
 Simple python backend framework ):
-<br />
+<br/>
 
 ## How to run
 Note that to test this in windows you need waitress, because gunicorn didn't supported in windows.
