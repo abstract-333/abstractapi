@@ -14,4 +14,4 @@ To run gunicorn (Linux, Mac):
 ```shell
 $ gunicorn app:app
 ```
-Otherwise gunicorn works well in other platforms.
+
