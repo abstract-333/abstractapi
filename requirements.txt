@@ -1,4 +1,11 @@
-gunicorn
-waitress
-webob
-parse
+black==24.1.1
+click==8.1.7
+colorama==0.4.6
+gunicorn==21.2.0
+mypy-extensions==1.0.0
+packaging==23.1
+parse==1.19.1
+pathspec==0.12.1
+platformdirs==4.1.0
+waitress==2.1.2
+WebOb==1.8.7

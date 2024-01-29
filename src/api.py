@@ -6,7 +6,7 @@ from webob import Request, Response
 
 class API:
     def __init__(self):
-        self.routes = {}
+        self.routes = dict()
 
     def route(self, path: str):
 
@@ -16,7 +16,7 @@ class API:
 
         return wrapper
 
-    def __call__(self, environ: dict, start_response: Any) -> Iterable:
+    def __call__(self, environ: dict[str, Callable], start_response: Any) -> Iterable:
         request = Request(environ)
         response = self.handle_request(request)
         return response(environ, start_response)
@@ -30,13 +30,15 @@ class API:
             self.default_response(response)
         return response
 
-    def find_handler(self, request_path: str) -> Union[tuple[Callable, dict[str, str]], tuple[None, None]]:
+    def find_handler(
+        self, request_path: str
+    ) -> Union[tuple[Callable, dict[str, str]], tuple[None, None]]:
         for path, handler in self.routes.items():
             parse_result = parse(path, request_path)
             if parse_result is not None:
                 return handler, parse_result.named
         return None, None
 
-    def default_response(self, response: Response):
-        response.status_code = 404
-        response.text = "Not Found"
+    @staticmethod
+    def default_response(response: Response):
+        response.status_code, response.text = 404, "Not Found"
